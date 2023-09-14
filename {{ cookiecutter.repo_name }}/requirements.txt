@@ -13,6 +13,7 @@ python-dotenv>=0.5.1
 # data
 streamlit
 pandas
+kedro-datasets
 {% if cookiecutter.python_interpreter != 'python3' %}
 
 # backwards compatibility

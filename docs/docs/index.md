@@ -107,7 +107,8 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 │   ├── __init__.py    <- Makes src a Python module
 │   │
 │   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
+│   │   ├── data_manager.py
+│   │   └── clean_dataset.py
 │   │
 │   ├── features       <- Scripts to turn raw data into features for modeling
 │   │   └── build_features.py
@@ -141,7 +142,7 @@ Since notebooks are challenging objects for source control (e.g., diffs of the `
 
  1. Follow a naming convention that shows the owner and the order the analysis was done in. We use the format `<step>-<ghuser>-<description>.ipynb` (e.g., `0.3-bull-visualize-distributions.ipynb`).
 
- 2. Refactor the good parts. Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at `src/data/make_dataset.py` and load data from `data/interim`. If it's useful utility code, refactor it to `src`.
+ 2. Refactor the good parts. Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at `src/data/clean_dataset.py` and load data from `data/interim`. If it's useful utility code, refactor it to `src`.
 
  Now by default we turn the project into a Python package (see the `setup.py` file). You can import your code and use it in notebooks with a cell like the following:
 
@@ -152,7 +153,7 @@ Since notebooks are challenging objects for source control (e.g., diffs of the `
 # OPTIONAL: always reload modules so that as you change code in src, it gets loaded
 %autoreload 2
 
-from src.data import make_dataset
+from src.data import clean_dataset
 ```
 
 ### Analysis is a directed acyclic graph ([DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph))
@@ -190,7 +191,7 @@ OTHER_VARIABLE=something
 
 #### Use a package to load these variables automatically.
 
-If you look at the stub script in `src/data/make_dataset.py`, it uses a package called [python-dotenv](https://github.com/theskumar/python-dotenv) to load up all the entries in this file as environment variables so they are accessible with `os.environ.get`. Here's an example snippet adapted from the `python-dotenv` documentation:
+If you look at the stub script in `src/data/clean_dataset.py`, it uses a package called [python-dotenv](https://github.com/theskumar/python-dotenv) to load up all the entries in this file as environment variables so they are accessible with `os.environ.get`. Here's an example snippet adapted from the `python-dotenv` documentation:
 
 ```python
 # src/data/dotenv_example.py
