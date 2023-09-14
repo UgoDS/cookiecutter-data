@@ -185,8 +185,6 @@ Create a `.env` file in the project root folder. Thanks to the `.gitignore`, thi
 ```nohighlight
 # example .env file
 DATABASE_URL=postgres://username:password@localhost:5432/dbname
-AWS_ACCESS_KEY=myaccesskey
-AWS_SECRET_ACCESS_KEY=mysecretkey
 OTHER_VARIABLE=something
 ```
 
